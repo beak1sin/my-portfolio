@@ -1,116 +1,5 @@
 import { skills } from "../data/portfolio";
-
-// 기술 스택별 아이콘과 브랜드 컬러 매핑
-const techConfig: Record<
-  string,
-  { icon: string; bgColor: string; textColor: string }
-> = {
-  JavaScript: {
-    icon: "/src/assets/icons/javascript/javascript-original.svg",
-    bgColor: "#F7DF1E",
-    textColor: "#000000",
-  },
-  "React.js": {
-    icon: "/src/assets/icons/react/react-original.svg",
-    bgColor: "#61DAFB",
-    textColor: "#FFFFFF",
-  },
-  React: {
-    icon: "/src/assets/icons/react/react-original.svg",
-    bgColor: "#61DAFB",
-    textColor: "#FFFFFF",
-  },
-  TypeScript: {
-    icon: "/src/assets/icons/typescript/typescript-original.svg",
-    bgColor: "#3178C6",
-    textColor: "#FFFFFF",
-  },
-  "Next.js": {
-    icon: "/src/assets/icons/nextjs/nextjs-original.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-  Git: {
-    icon: "/src/assets/icons/git/git-original.svg",
-    bgColor: "#F05032",
-    textColor: "#FFFFFF",
-  },
-  Jira: {
-    icon: "/src/assets/icons/jira/jira-original.svg",
-    bgColor: "#0052CC",
-    textColor: "#FFFFFF",
-  },
-  Figma: {
-    icon: "/src/assets/icons/figma/figma-original.svg",
-    bgColor: "#F24E1E",
-    textColor: "#FFFFFF",
-  },
-  "Tanstack Query": {
-    icon: "/src/assets/icons/tanstackquery/tanstackquery.svg",
-    bgColor: "#FF4154",
-    textColor: "#FFFFFF",
-  },
-  Zustand: {
-    icon: "/src/assets/icons/zustand/zustand-original.svg",
-    bgColor: "#443E38",
-    textColor: "#FFFFFF",
-  },
-  Redux: {
-    icon: "/src/assets/icons/redux/redux-original.svg",
-    bgColor: "#764ABC",
-    textColor: "#FFFFFF",
-  },
-  Axios: {
-    icon: "/src/assets/icons/axios/axios-plain.svg",
-    bgColor: "#5A29E4",
-    textColor: "#FFFFFF",
-  },
-  "Tailwind CSS": {
-    icon: "/src/assets/icons/tailwindcss/tailwindcss-original.svg",
-    bgColor: "#06B6D4",
-    textColor: "#FFFFFF",
-  },
-  "Chakra UI": {
-    icon: "/src/assets/icons/chakraui/chakraui-original.svg",
-    bgColor: "#319795",
-    textColor: "#FFFFFF",
-  },
-  "Framer Motion": {
-    icon: "/src/assets/icons/framermotion/framermotion-original.svg",
-    bgColor: "#0055FF",
-    textColor: "#FFFFFF",
-  },
-  Electron: {
-    icon: "/src/assets/icons/electron/electron-original.svg",
-    bgColor: "#47848F",
-    textColor: "#FFFFFF",
-  },
-  WebSocket: {
-    icon: "/src/assets/icons/socketio/socketio-original.svg",
-    bgColor: "#010101",
-    textColor: "#FFFFFF",
-  },
-  FCM: {
-    icon: "/src/assets/icons/firebase/firebase-original.svg",
-    bgColor: "#FFCA28",
-    textColor: "#000000",
-  },
-  "Three.js": {
-    icon: "/src/assets/icons/threejs/threejs-original.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-  "REST API": {
-    icon: "/src/assets/icons/nodejs/nodejs-original.svg",
-    bgColor: "#5B9E58",
-    textColor: "#FFFFFF",
-  },
-  "Shadcn UI": {
-    icon: "/src/assets/icons/shadcnui/shadcnui.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-};
+import { techConfig } from "../constants/techConfig";
 
 const Skills = () => {
   return (
@@ -147,7 +36,7 @@ const Skills = () => {
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
                       <div
-                        className="bg-gradient-to-r from-primary-600 to-blue-600 h-2 rounded-full transition-all duration-1000"
+                        className="bg-linear-to-r from-primary-600 to-blue-600 h-2 rounded-full transition-all duration-1000"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>

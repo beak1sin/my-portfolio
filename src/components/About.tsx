@@ -1,4 +1,5 @@
 import { personalInfo } from "../data/portfolio.ts";
+import profileImage from "../assets/profile.jpg";
 
 const About = () => {
   return (
@@ -18,7 +19,7 @@ const About = () => {
           <div className="flex justify-center">
             <div className="w-64 h-64 rounded-full overflow-hidden shadow-2xl ring-4 ring-primary-500 ring-offset-4">
               <img
-                src="/src/assets/profile.jpg"
+                src={profileImage}
                 alt={personalInfo.name}
                 className="w-full h-full object-cover"
               />

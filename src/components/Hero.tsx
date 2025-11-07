@@ -1,4 +1,5 @@
 import { personalInfo } from "../data/portfolio";
+import backgroundImage from "../assets/background.png";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -24,7 +25,7 @@ const Hero = () => {
         }}
       >
         <img
-          src="/src/assets/background.png"
+          src={backgroundImage}
           alt="background"
           className="w-full h-full object-cover object-right"
         />

@@ -1,93 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { projects } from "../data/portfolio";
-
-// 기술 스택별 아이콘과 브랜드 컬러 매핑
-const techConfig: Record<
-  string,
-  { icon: string; bgColor: string; textColor: string }
-> = {
-  JavaScript: {
-    icon: "/src/assets/icons/javascript/javascript-original.svg",
-    bgColor: "#F7DF1E",
-    textColor: "#000000",
-  },
-  React: {
-    icon: "/src/assets/icons/react/react-original.svg",
-    bgColor: "#61DAFB",
-    textColor: "#FFFFFF",
-  },
-  TypeScript: {
-    icon: "/src/assets/icons/typescript/typescript-original.svg",
-    bgColor: "#3178C6",
-    textColor: "#FFFFFF",
-  },
-  "Next.js": {
-    icon: "/src/assets/icons/nextjs/nextjs-original.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-  "Tailwind CSS": {
-    icon: "/src/assets/icons/tailwindcss/tailwindcss-original.svg",
-    bgColor: "#06B6D4",
-    textColor: "#FFFFFF",
-  },
-  "Shadcn UI": {
-    icon: "/src/assets/icons/shadcnui/shadcnui.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-  "Tanstack Query": {
-    icon: "/src/assets/icons/tanstackquery/tanstackquery.svg",
-    bgColor: "#FF4154",
-    textColor: "#FFFFFF",
-  },
-  Zustand: {
-    icon: "/src/assets/icons/zustand/zustand-original.svg",
-    bgColor: "#443E38",
-    textColor: "#FFFFFF",
-  },
-  Axios: {
-    icon: "/src/assets/icons/axios/axios-plain.svg",
-    bgColor: "#5A29E4",
-    textColor: "#FFFFFF",
-  },
-  FCM: {
-    icon: "/src/assets/icons/firebase/firebase-original.svg",
-    bgColor: "#FFCA28",
-    textColor: "#000000",
-  },
-  Electron: {
-    icon: "/src/assets/icons/electron/electron-original.svg",
-    bgColor: "#47848F",
-    textColor: "#FFFFFF",
-  },
-  "Three.js": {
-    icon: "/src/assets/icons/threejs/threejs-original.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-  WebSocket: {
-    icon: "/src/assets/icons/socketio/socketio-original.svg",
-    bgColor: "#010101",
-    textColor: "#FFFFFF",
-  },
-  "Chakra UI": {
-    icon: "/src/assets/icons/chakraui/chakraui-original.svg",
-    bgColor: "#319795",
-    textColor: "#FFFFFF",
-  },
-  Redux: {
-    icon: "/src/assets/icons/redux/redux-original.svg",
-    bgColor: "#764ABC",
-    textColor: "#FFFFFF",
-  },
-  "Framer Motion": {
-    icon: "/src/assets/icons/framermotion/framermotion-original.svg",
-    bgColor: "#0055FF",
-    textColor: "#FFFFFF",
-  },
-};
+import { techConfig } from "../constants/techConfig";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -142,7 +56,7 @@ const Projects = () => {
             <div className="flex items-center gap-4 mb-4">
               {/* 프로젝트 로고 */}
               {selectedProject.logo && (
-                <div className="w-16 h-16 flex-shrink-0 bg-white dark:bg-gray-900 rounded-xl p-3 shadow-lg">
+                <div className="w-16 h-16 shrink-0 bg-white dark:bg-gray-900 rounded-xl p-3 shadow-lg">
                   <img
                     src={selectedProject.logo}
                     alt={`${selectedProject.title} 로고`}
@@ -225,7 +139,7 @@ const Projects = () => {
               {selectedProject.features.map((feature, index) => (
                 <li key={index} className="flex items-start">
                   <svg
-                    className="w-5 h-5 text-primary-600 mt-0.5 mr-2 flex-shrink-0"
+                    className="w-5 h-5 text-primary-600 mt-0.5 mr-2 shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >

@@ -1,93 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { projects } from "../data/portfolio";
 import Navbar from "../components/Navbar";
-
-// 기술 스택 아이콘 및 색상 설정
-const techConfig: Record<
-  string,
-  { icon: string; bgColor: string; textColor: string }
-> = {
-  JavaScript: {
-    icon: "/src/assets/icons/javascript/javascript-original.svg",
-    bgColor: "#F7DF1E",
-    textColor: "#000000",
-  },
-  React: {
-    icon: "/src/assets/icons/react/react-original.svg",
-    bgColor: "#61DAFB",
-    textColor: "#FFFFFF",
-  },
-  TypeScript: {
-    icon: "/src/assets/icons/typescript/typescript-original.svg",
-    bgColor: "#3178C6",
-    textColor: "#FFFFFF",
-  },
-  "Next.js": {
-    icon: "/src/assets/icons/nextjs/nextjs-original.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-  "Tailwind CSS": {
-    icon: "/src/assets/icons/tailwindcss/tailwindcss-original.svg",
-    bgColor: "#06B6D4",
-    textColor: "#FFFFFF",
-  },
-  "Shadcn UI": {
-    icon: "/src/assets/icons/shadcnui/shadcnui.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-  "Tanstack Query": {
-    icon: "/src/assets/icons/tanstackquery/tanstackquery.svg",
-    bgColor: "#FF4154",
-    textColor: "#FFFFFF",
-  },
-  Zustand: {
-    icon: "/src/assets/icons/zustand/zustand-original.svg",
-    bgColor: "#443E38",
-    textColor: "#FFFFFF",
-  },
-  Redux: {
-    icon: "/src/assets/icons/redux/redux-original.svg",
-    bgColor: "#764ABC",
-    textColor: "#FFFFFF",
-  },
-  Axios: {
-    icon: "/src/assets/icons/axios/axios-original.svg",
-    bgColor: "#5A29E4",
-    textColor: "#FFFFFF",
-  },
-  "Chakra UI": {
-    icon: "/src/assets/icons/chakraui/chakraui-original.svg",
-    bgColor: "#319795",
-    textColor: "#FFFFFF",
-  },
-  "Framer Motion": {
-    icon: "/src/assets/icons/framermotion/framermotion-original.svg",
-    bgColor: "#0055FF",
-    textColor: "#FFFFFF",
-  },
-  Electron: {
-    icon: "/src/assets/icons/electron/electron-original.svg",
-    bgColor: "#47848F",
-    textColor: "#FFFFFF",
-  },
-  WebSocket: {
-    icon: "/src/assets/icons/socketio/socketio-original.svg",
-    bgColor: "#010101",
-    textColor: "#FFFFFF",
-  },
-  FCM: {
-    icon: "/src/assets/icons/firebase/firebase-original.svg",
-    bgColor: "#FFCA28",
-    textColor: "#000000",
-  },
-  "Three.js": {
-    icon: "/src/assets/icons/threejs/threejs-original.svg",
-    bgColor: "#000000",
-    textColor: "#FFFFFF",
-  },
-};
+import { techConfig } from "../constants/techConfig";
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -143,7 +57,7 @@ const ProjectDetail = () => {
             <div className="flex items-start gap-6 mb-6">
               {/* 프로젝트 로고 */}
               {project.logo && (
-                <div className="w-24 h-24 flex-shrink-0 bg-gray-100 dark:bg-gray-900 rounded-2xl p-4 shadow-lg">
+                <div className="w-24 h-24 shrink-0 bg-gray-100 dark:bg-gray-900 rounded-2xl p-4 shadow-lg">
                   <img
                     src={project.logo}
                     alt={`${project.title} 로고`}
@@ -174,7 +88,7 @@ const ProjectDetail = () => {
             {/* 프로젝트 메타 정보 */}
             <div className="grid md:grid-cols-3 gap-4 pt-6 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center shrink-0">
                   <svg
                     className="w-5 h-5 text-primary-600 dark:text-primary-400"
                     fill="none"
@@ -200,7 +114,7 @@ const ProjectDetail = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center shrink-0">
                   <svg
                     className="w-5 h-5 text-primary-600 dark:text-primary-400"
                     fill="none"
@@ -226,7 +140,7 @@ const ProjectDetail = () => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center shrink-0">
                   <svg
                     className="w-5 h-5 text-primary-600 dark:text-primary-400"
                     fill="none"
@@ -377,7 +291,7 @@ const ProjectDetail = () => {
                   key={index}
                   className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg hover:shadow-md transition-shadow"
                 >
-                  <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center shrink-0">
                     <svg
                       className="w-4 h-4 text-primary-600 dark:text-primary-400"
                       fill="none"
@@ -422,7 +336,7 @@ const ProjectDetail = () => {
               {project.achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-primary-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 rounded-xl p-6 border-2 border-primary-200 dark:border-primary-800 hover:shadow-lg transition-shadow"
+                  className="bg-linear-to-br from-primary-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 rounded-xl p-6 border-2 border-primary-200 dark:border-primary-800 hover:shadow-lg transition-shadow"
                 >
                   <div className="flex items-start gap-4">
                     <span className="text-3xl">⭐</span>

@@ -1,3 +1,7 @@
+import logoHangbokdog from '../assets/logo/logo_hangbokdog.svg';
+import logoDonghang from '../assets/logo/logo_donghang.svg';
+import logoEzip from '../assets/logo/logo_ezip.svg';
+
 export const personalInfo = {
   name: '이재백',
   title: '배움에 두려움이 없는 프론트엔드 개발자',
@@ -39,7 +43,7 @@ export const projects = [
     team: '4명 (FE: 2명, BE: 2명)',
     role: '기획 및 설계, UI/UX 디자인, 프론트엔드 개발 (기여도 50%)',
     description: '유기견 보호소의 입양·임보, 봉사, 강아지 관리를 통합해 운영 효율과 소통을 향상시키는 웹앱 플랫폼',
-    logo: '/src/assets/logo/logo_hangbokdog.svg',
+    logo: logoHangbokdog,
     techStack: ['TypeScript', 'React', 'Tailwind CSS', 'Shadcn UI', 'Tanstack Query', 'Zustand', 'Axios', 'FCM'],
     features: [
       '보호소(센터) 등록 및 관리',
@@ -66,7 +70,7 @@ export const projects = [
     team: '6명 (FE: 2명, BE: 3명, AI: 1명)',
     role: '기획 및 설계, UI/UX 디자인, Electron 기반 아키텍처 설계 및 IPC 통신 구현 (기여도 50%)',
     description: '시니어를 위한 쉽고 편한 AI 기반 뱅킹 키오스크',
-    logo: '/src/assets/logo/logo_donghang.svg',
+    logo: logoDonghang,
     techStack: ['Electron', 'TypeScript', 'React', 'Tanstack Query', 'Three.js', 'WebSocket'],
     features: [
       '사용자 얼굴 인식 기반 UI 자동 전환 (일반/고령층)',
@@ -92,7 +96,7 @@ export const projects = [
     team: '3명 (FE: 1명, FULL: 1명, INFRA: 1명)',
     role: '기획 및 설계, UI/UX 디자인, 프론트엔드 아키텍처 설계 및 핵심 기능 구현',
     description: '아파트 매물 정보 및 시세 추이를 쉽게 확인하는 AI 기반 웹 플랫폼',
-    logo: '/src/assets/logo/logo_ezip.svg',
+    logo: logoEzip,
     techStack: ['TypeScript', 'React', 'Chakra UI', 'Redux', 'Tanstack Query', 'Framer Motion', 'Axios'],
     features: [
       '줌 레벨별 카카오 맵 연동 (아파트 → 동 → 구 → 시 단위 시세 표시)',
