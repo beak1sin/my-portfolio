@@ -144,8 +144,8 @@ MIT License
 
 **이재백**
 - Email: dbswlrla112@naver.com
-- GitHub: [링크]
-- Blog: [링크]
+- GitHub: https://github.com/beak1sin
+- Blog: https://velog.io/@dbswlrla112/posts
 
 ---
 
