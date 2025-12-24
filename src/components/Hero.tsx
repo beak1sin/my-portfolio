@@ -1,6 +1,7 @@
 import { personalInfo } from "../data/portfolio";
 import { motion } from "framer-motion";
 import { staggerContainer, staggerItem } from "../hooks/useScrollAnimation";
+import backgroundImage from "../assets/background.png";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -22,8 +23,13 @@ const Hero = () => {
       id="hero"
       className="min-h-screen flex items-center justify-center bg-white dark:bg-black relative overflow-hidden"
     >
-      {/* Subtle Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-800/20 dark:to-black" />
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-30 dark:invert"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      />
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white dark:from-black/80 dark:via-black/60 dark:to-black" />
 
       {/* Content */}
       <div className="container-main relative z-10 py-32">
