@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
-import { experience, awards, languages } from "../data/portfolio";
+import {
+  experience,
+  awards,
+  languages,
+  certificates as localCertificates,
+} from "../data/portfolio";
 import { supabase } from "../supabaseClient.ts";
+import { motion } from "framer-motion";
+import {
+  fadeInUp,
+  staggerContainer,
+  staggerItem,
+} from "../hooks/useScrollAnimation";
 
 interface Certificate {
   id: number | string;
   name: string;
-  organization: string; // Supabase의 'issuer' 컬럼과 매칭
-  certificateNumber: string; // Supabase의 'license_number' 컬럼과 매칭
-  date: string; // Supabase의 'acquisition_date' 컬럼과 매칭
+  organization: string;
+  certificateNumber: string;
+  date: string;
   details?: string;
 }
 
@@ -25,75 +36,91 @@ const Experience = () => {
     }
   };
 
-  const [certificates, setCertificates] = useState<Certificate[]>([]);
+  const [certificates, setCertificates] =
+    useState<Certificate[]>(localCertificates);
 
-  // 5. 컴포넌트가 마운트될 때 Supabase에서 데이터를 fetch(가져오기)
   useEffect(() => {
     const fetchCertificates = async () => {
-      // 'licenses'는 이전에 Supabase에서 생성한 테이블 이름입니다.
-      const { data, error } = await supabase
-        .from("licenses") // 👈 Supabase 테이블명
-        .select("*") // 👈 모든 컬럼 가져오기
-        .order("acquisition_date", { ascending: false }); // 👈 최신순 정렬 (선택사항)
+      try {
+        const { data, error } = await supabase
+          .from("licenses")
+          .select("*")
+          .order("acquisition_date", { ascending: false });
 
-      if (error) {
-        console.error("Error fetching certificates:", error);
-      } else if (data) {
-        // 6. [중요] Supabase 컬럼명 -> React 컴포넌트 Prop 이름으로 매핑
-        //    (예: Supabase의 'issuer' -> React의 'organization')
-        const formattedData = data.map((cert) => ({
-          id: cert.id,
-          name: cert.name,
-          organization: cert.issuer, // 👈 매핑
-          certificateNumber: cert.license_number, // 👈 매핑
-          date: cert.acquisition_date, // 👈 매핑
-          details: cert.details,
-        }));
-
-        setCertificates(formattedData);
+        if (error) {
+          console.error("Error fetching certificates:", error);
+          // Fallback to local data is already set as initial state
+        } else if (data && data.length > 0) {
+          const formattedData = data.map((cert) => ({
+            id: cert.id,
+            name: cert.name,
+            organization: cert.issuer,
+            certificateNumber: cert.license_number,
+            date: cert.acquisition_date,
+            details: cert.details,
+          }));
+          setCertificates(formattedData);
+        }
+      } catch (err) {
+        console.error("Supabase connection failed, using local data:", err);
+        // Keep using local data
       }
     };
-
     fetchCertificates();
-  }, []); // [] : 컴포넌트가 처음 로드될 때 1번만 실행
+  }, []);
 
   return (
-    <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+    <section
+      id="experience"
+      className="section-padding bg-neutral-50 dark:bg-neutral-800/30"
+    >
+      <div className="container-wide">
+        {/* Section Header */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-16"
+        >
+          <h2 className="heading-section mb-4">
             <span className="text-gradient">Experience & Awards</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            교육, 경력, 그리고 수상 내역
-          </p>
-        </div>
+          <p className="body-large">교육, 경력, 그리고 수상 내역</p>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* 경력 및 교육 */}
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+          {/* Experience & Education */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-6">
               경력 및 교육
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {experience.map((exp) => (
-                <div
+                <motion.div
                   key={exp.id}
-                  className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
+                  variants={staggerItem}
+                  whileHover={{ y: -2 }}
+                  className="card rounded-2xl p-6 card-hover"
                 >
-                  <div className="flex items-start">
-                    <span className="text-3xl mr-4">{getIcon(exp.type)}</span>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
+                  <div className="flex items-start gap-4">
+                    <span className="text-2xl">{getIcon(exp.type)}</span>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-neutral-800 dark:text-neutral-100 mb-1">
                         {exp.title}
                       </h4>
-                      <p className="text-primary-600 dark:text-primary-400 font-semibold mb-1">
+                      <p className="text-accent font-medium text-sm mb-1">
                         {exp.organization}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-3">
                         {exp.period}
                       </p>
-                      <p className="text-gray-700 dark:text-gray-300 mb-3">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                         {exp.description}
                       </p>
                       {exp.details.length > 0 && (
@@ -101,9 +128,9 @@ const Experience = () => {
                           {exp.details.map((detail, index) => (
                             <li
                               key={index}
-                              className="text-sm text-gray-600 dark:text-gray-400 flex items-start"
+                              className="text-xs text-neutral-500 dark:text-neutral-400 flex items-start gap-2"
                             >
-                              <span className="mr-2">•</span>
+                              <span className="text-accent">•</span>
                               <span>{detail}</span>
                             </li>
                           ))}
@@ -111,133 +138,144 @@ const Experience = () => {
                       )}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* 수상 및 자격증 */}
-          <div>
-            {/* 수상 내역 */}
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              수상 내역
-            </h3>
-            <div className="space-y-4 mb-12">
-              {awards.map((award) => (
-                <div
-                  key={award.id}
-                  className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <div className="flex items-start">
-                    <span className="text-3xl mr-4">
-                      {award.title.includes("1등") ||
-                      award.title.includes("최우수")
-                        ? "🥇"
-                        : "🥈"}
-                    </span>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                        {award.title}
-                      </h4>
-                      <p className="text-primary-600 dark:text-primary-400 font-semibold mb-1">
-                        {award.organization}
-                      </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                        {award.date} • {award.project}
-                      </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {award.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 자격증 */}
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              자격증
-            </h3>
-            <div className="space-y-3 mb-12">
-              {certificates.map((cert) => (
-                <div
-                  key={cert.id}
-                  className="bg-white dark:bg-gray-900 rounded-lg p-4 shadow hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex-1">
-                      <h4 className="font-bold text-gray-900 dark:text-white">
-                        {cert.name}
-                      </h4>
-                      <div className="flex gap-1">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {cert.organization}
-                        </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          ·
-                        </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {cert.certificateNumber}
-                        </p>
-                      </div>
-                    </div>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {cert.date}
-                    </span>
-                  </div>
-                  {"details" in cert && (
-                    <p className="text-xs text-primary-600 dark:text-primary-400 mt-1">
-                      {cert.details}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* 어학 */}
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              어학
-            </h3>
-            <div className="space-y-3">
-              {languages.map((lang) => (
-                <div
-                  key={lang.id}
-                  className="bg-white dark:bg-gray-900 rounded-lg p-4 shadow hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-1">
-                        <h4 className="font-bold text-gray-900 dark:text-white">
-                          {lang.name}
+          {/* Awards, Certificates, Languages */}
+          <div className="space-y-12">
+            {/* Awards */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-6">
+                수상 내역
+              </h3>
+              <div className="space-y-4">
+                {awards.map((award) => (
+                  <motion.div
+                    key={award.id}
+                    variants={staggerItem}
+                    whileHover={{ y: -2 }}
+                    className="card rounded-2xl p-6 card-hover"
+                  >
+                    <div className="flex items-start gap-4">
+                      <span className="text-2xl">
+                        {award.title.includes("1등") ||
+                        award.title.includes("최우수")
+                          ? "🥇"
+                          : "🥈"}
+                      </span>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-neutral-800 dark:text-neutral-100 mb-1">
+                          {award.title}
                         </h4>
-                        <span className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
-                          {lang.level}
-                        </span>
-                      </div>
-                      <div className="flex gap-1">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {lang.organization}
+                        <p className="text-accent font-medium text-sm mb-1">
+                          {award.organization}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          ·
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-2">
+                          {award.date} • {award.project}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {lang.certificateNumber}
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                          {award.description}
                         </p>
                       </div>
                     </div>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {lang.date}
-                    </span>
-                  </div>
-                  {lang.description && (
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      {lang.description}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Certificates */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-6">
+                자격증
+              </h3>
+              <div className="space-y-3">
+                {certificates.map((cert) => (
+                  <motion.div
+                    key={cert.id}
+                    variants={staggerItem}
+                    whileHover={{ y: -1 }}
+                    className="card rounded-xl p-4 card-hover"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="font-medium text-neutral-800 dark:text-neutral-100 text-sm">
+                          {cert.name}
+                        </h4>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                          {cert.organization} · {cert.certificateNumber}
+                        </p>
+                        {cert.details && (
+                          <p className="text-xs text-accent mt-1">
+                            {cert.details}
+                          </p>
+                        )}
+                      </div>
+                      <span className="text-xs text-neutral-400 shrink-0 ml-4">
+                        {cert.date}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Languages */}
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-6">
+                어학
+              </h3>
+              <div className="space-y-3">
+                {languages.map((lang) => (
+                  <motion.div
+                    key={lang.id}
+                    variants={staggerItem}
+                    whileHover={{ y: -1 }}
+                    className="card rounded-xl p-4 card-hover"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="flex items-center gap-3 mb-1">
+                          <h4 className="font-medium text-neutral-800 dark:text-neutral-100 text-sm">
+                            {lang.name}
+                          </h4>
+                          <span className="px-2 py-0.5 bg-accent/10 text-accent rounded-full text-xs font-semibold">
+                            {lang.level}
+                          </span>
+                        </div>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                          {lang.organization} · {lang.certificateNumber}
+                        </p>
+                        {lang.description && (
+                          <p className="text-xs text-neutral-400 mt-1">
+                            {lang.description}
+                          </p>
+                        )}
+                      </div>
+                      <span className="text-xs text-neutral-400 shrink-0 ml-4">
+                        {lang.date}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

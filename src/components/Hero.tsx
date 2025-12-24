@@ -1,5 +1,6 @@
 import { personalInfo } from "../data/portfolio";
-import backgroundImage from "../assets/background.png";
+import { motion } from "framer-motion";
+import { staggerContainer, staggerItem } from "../hooks/useScrollAnimation";
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -9,91 +10,176 @@ const Hero = () => {
     }
   };
 
+  const scrollToProjects = () => {
+    const element = document.getElementById("projects");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 pt-16 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-white dark:bg-black relative overflow-hidden"
     >
-      {/* 배경 이미지 - 오른쪽에서 왼쪽으로 그라디언트 */}
-      <div
-        className="absolute top-16 right-0 w-1/2 h-1/3 opacity-30 dark:opacity-15"
-        style={{
-          maskImage:
-            "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
-        }}
-      >
-        <img
-          src={backgroundImage}
-          alt="background"
-          className="w-full h-full object-cover object-right"
-        />
-      </div>
+      {/* Subtle Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-800/20 dark:to-black" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="text-center animate-fade-in">
-          {/* 인사말 */}
-          <p className="text-primary-600 dark:text-primary-400 font-semibold mb-4 text-lg">
+      {/* Content */}
+      <div className="container-main relative z-10 py-32">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="text-center"
+        >
+          {/* Greeting */}
+          <motion.p
+            variants={staggerItem}
+            className="text-accent font-medium mb-6 text-lg tracking-wide"
+          >
             안녕하세요 👋
-          </p>
+          </motion.p>
 
-          {/* 이름 */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+          {/* Name */}
+          <motion.h1 variants={staggerItem} className="heading-hero mb-6">
             <span className="text-gradient">{personalInfo.name}</span>
-          </h1>
+          </motion.h1>
 
-          {/* 타이틀 */}
-          <h2 className="text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+          {/* Title */}
+          <motion.h2
+            variants={staggerItem}
+            className="heading-subsection text-neutral-800 dark:text-neutral-100 mb-8"
+          >
             {personalInfo.title}
-          </h2>
+          </motion.h2>
 
-          {/* 설명 */}
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
+          {/* Description */}
+          <motion.p
+            variants={staggerItem}
+            className="body-large max-w-2xl mx-auto mb-12"
+          >
             {personalInfo.description}
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <button
+          <motion.div
+            variants={staggerItem}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <motion.button
+              onClick={scrollToProjects}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-primary px-8 py-4 text-base"
+            >
+              프로젝트 보기
+            </motion.button>
+            <motion.button
               onClick={scrollToContact}
-              className="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-secondary px-8 py-4 text-base"
             >
               연락하기
-            </button>
-            <a
-              href="/portfolio.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              📄 PDF 포트폴리오
-            </a>
-            <a
+            </motion.button>
+          </motion.div>
+
+          {/* Links */}
+          <motion.div
+            variants={staggerItem}
+            className="flex justify-center gap-6 mt-12"
+          >
+            <motion.a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3 border-2 border-primary-600 text-primary-600 dark:text-primary-400 dark:border-primary-400 rounded-lg font-semibold hover:bg-primary-50 dark:hover:bg-gray-800 transition-all"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+              aria-label="GitHub"
             >
-              GitHub 보기
-            </a>
-          </div>
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </motion.a>
+            <motion.a
+              href={personalInfo.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+              aria-label="Blog"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                />
+              </svg>
+            </motion.a>
+            <motion.a
+              href="/portfolio.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+              aria-label="PDF Portfolio"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </motion.a>
+          </motion.div>
+        </motion.div>
 
-          {/* 스크롤 다운 애니메이션 */}
-          <div className="animate-bounce-slow mt-16">
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2 text-neutral-400"
+          >
+            <span className="text-xs tracking-widest uppercase">Scroll</span>
             <svg
-              className="w-6 h-6 mx-auto text-gray-400"
+              className="w-4 h-4"
               fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
               stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              />
             </svg>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

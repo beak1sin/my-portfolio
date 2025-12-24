@@ -1,116 +1,146 @@
 import { skills } from "../data/portfolio";
 import { techConfig } from "../constants/techConfig";
+import { motion } from "framer-motion";
+import {
+  fadeInUp,
+  staggerContainer,
+  staggerItem,
+} from "../hooks/useScrollAnimation";
 
 const Skills = () => {
+  const techList = [
+    "JavaScript",
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Tanstack Query",
+    "Zustand",
+    "Redux",
+    "Axios",
+    "Tailwind CSS",
+    "Chakra UI",
+    "Framer Motion",
+    "Electron",
+    "WebSocket",
+    "FCM",
+    "Three.js",
+    "Git",
+    "Jira",
+    "Figma",
+  ];
+
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+    <section
+      id="skills"
+      className="section-padding bg-neutral-50 dark:bg-neutral-800/30"
+    >
+      <div className="container-wide">
+        {/* Section Header */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-16"
+        >
+          <h2 className="heading-section mb-4">
             <span className="text-gradient">Skills</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            프로젝트를 통해 습득한 기술 스택입니다
-          </p>
-        </div>
+          <p className="body-large">프로젝트를 통해 습득한 기술 스택입니다</p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        {/* Skill Categories */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid md:grid-cols-2 gap-8 mb-16"
+        >
           {skills.map((category) => (
-            <div
+            <motion.div
               key={category.category}
-              className="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg"
+              variants={staggerItem}
+              className="card rounded-3xl"
             >
-              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+              <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-6">
                 {category.category}
               </h3>
               <div className="space-y-6">
                 {category.items.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="font-semibold text-gray-800 dark:text-gray-200">
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-neutral-800 dark:text-neutral-200">
                         {skill.name}
                       </span>
-                      <span className="text-sm text-primary-600 dark:text-primary-400">
+                      <span className="text-sm text-accent font-medium">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
-                      <div
-                        className="bg-linear-to-r from-primary-600 to-blue-600 h-2 rounded-full transition-all duration-1000"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
+                    <div className="relative h-1.5 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 1,
+                          ease: [0.25, 0.1, 0.25, 1],
+                          delay: 0.2,
+                        }}
+                        className="absolute h-full bg-gradient-to-r from-accent to-gradient-start rounded-full"
+                      />
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400">
                       {skill.description}
                     </p>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* 추가 기술 - 아이콘과 브랜드 컬러 */}
-        <div className="mt-12">
-          <h3 className="text-xl font-bold mb-6 text-center text-gray-900 dark:text-white">
+        {/* Tech Stack Grid */}
+        <motion.div
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <h3 className="text-xl font-semibold text-center text-neutral-800 dark:text-neutral-100 mb-8">
             기술 스택
           </h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {[
-              "JavaScript",
-              "React",
-              "TypeScript",
-              "Next.js",
-              "Tanstack Query",
-              "Zustand",
-              "Redux",
-              "Axios",
-              "Tailwind CSS",
-              "Chakra UI",
-              "Framer Motion",
-              "Electron",
-              "WebSocket",
-              "FCM",
-              "Three.js",
-              "Git",
-              "Jira",
-              "Figma",
-            ].map((tech) => {
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            {techList.map((tech) => {
               const config = techConfig[tech];
               return (
-                <div
+                <motion.div
                   key={tech}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg shadow hover:shadow-lg transition-all transform hover:scale-105"
-                  style={{
-                    backgroundColor: config?.bgColor || "#E5E7EB",
-                    color: config?.textColor || "#000000",
-                  }}
+                  variants={staggerItem}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white dark:bg-neutral-800 shadow-sm border border-neutral-200 dark:border-neutral-700 transition-all"
                 >
                   {config?.icon && (
                     <img
                       src={config.icon}
                       alt={tech}
                       className="w-5 h-5 object-contain"
-                      style={{
-                        filter:
-                          config.textColor === "#FFFFFF" &&
-                          tech !== "TypeScript" &&
-                          tech !== "Next.js" &&
-                          tech !== "Zustand" &&
-                          tech !== "Chakra UI" &&
-                          tech !== "Figma" &&
-                          tech !== "Tanstack Query"
-                            ? "brightness(0) invert(1)"
-                            : "none",
-                      }}
                     />
                   )}
-                  <span className="font-medium text-sm">{tech}</span>
-                </div>
+                  <span className="font-medium text-sm text-neutral-700 dark:text-neutral-300">
+                    {tech}
+                  </span>
+                </motion.div>
               );
             })}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
