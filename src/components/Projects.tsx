@@ -14,10 +14,7 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(projects[0]);
 
   return (
-    <section
-      id="projects"
-      className="section-padding bg-white dark:bg-black"
-    >
+    <section id="projects" className="section-padding bg-white dark:bg-black">
       <div className="container-wide">
         {/* Section Header */}
         <motion.div
@@ -105,9 +102,11 @@ const Projects = () => {
                       {selectedProject.title}
                     </h3>
                     <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold">
-                      {selectedProject.subtitle.includes("1등")
-                        ? "🥇 1등"
-                        : "🥈 2등"}
+                      {selectedProject.subtitle.includes("외주")
+                        ? "🏢 외주"
+                        : selectedProject.subtitle.includes("1등")
+                          ? "🥇 1등"
+                          : "🥈 2등"}
                     </span>
                   </div>
                 </div>
@@ -327,6 +326,25 @@ const Projects = () => {
                     />
                   </svg>
                   Live Demo
+                </motion.a>
+              )}
+              {selectedProject.figma && (
+                <motion.a
+                  href={selectedProject.figma}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center px-6 py-3 bg-[#F24E1E] text-white rounded-full font-medium text-sm transition-all hover:bg-[#D9451A]"
+                >
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zM8.148 24c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.588 4.539zm-.001-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02c1.665 0 3.019-1.355 3.019-3.02v-3.019H8.147zM8.148 15.02H3.559c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V7.51H3.561zM8.148 8.981H3.559c-2.476 0-4.49-2.014-4.49-4.49S1.084 0 3.559 0h4.588v8.981zM3.561 1.472c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.019 3.019 3.019h3.117V1.472H3.561zM15.852 15.02h-4.588V6.04h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-3.117-7.51v6.039h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117z" />
+                  </svg>
+                  Figma
                 </motion.a>
               )}
             </div>

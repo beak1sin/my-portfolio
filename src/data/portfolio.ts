@@ -1,3 +1,4 @@
+import logoKua from '../assets/logo/logo_kua.svg';
 import logoHangbokdog from '../assets/logo/logo_hangbokdog.svg';
 import logoDonghang from '../assets/logo/logo_donghang.svg';
 import logoEzip from '../assets/logo/logo_ezip.svg';
@@ -36,6 +37,34 @@ export const skills = [
 
 export const projects = [
   {
+    id: 'kua',
+    title: '대한수중핀수영협회 (KUA)',
+    subtitle: '외주 프로젝트',
+    period: '2025.11.18 ~ 2025.12.19 (5주, 이후 유지보수)',
+    team: '6명 (FE: 2명, BE: 2명, UI/UX: 2명)',
+    role: '관리자 페이지 전체 개발, Next.js Route Handler 기반 API Proxy 설계 및 구현 (기여도 50%)',
+    description: '대한수중핀수영협회 공식 홈페이지 리뉴얼 프로젝트',
+    logo: logoKua,
+    techStack: ['TypeScript', 'Next.js', 'Tailwind CSS', 'Tanstack Query'],
+    features: [
+      '관리자 대시보드 (메인 섹션, 팝업, 로고, 협회 소개 등 콘텐츠 CRUD 관리)',
+      '회원 관리 시스템 (회원 목록 조회, 탈퇴 회원 관리)',
+      '게시판 시스템 (공지사항, 갤러리, 대회 일정/결과, 문의 게시판 등)',
+      '교육사업장 관리 (Leaflet 지도 연동, 위치 정보 관리)',
+      'Next.js Server Component 기반 SEO 최적화 및 API Proxy 구현',
+    ],
+    achievements: [
+      'Next.js Route Handler API Proxy로 보안성 강화 (JWT 자동 주입, 토큰 만료 시 자동 갱신)',
+      '지수 백오프(Exponential Backoff) 최대 3회 재시도 로직 구현',
+      'HttpOnly 쿠키 기반 인증으로 XSS 공격 방지',
+      'Server/Client Component 전략적 분리로 JS 번들 최소화 및 TTI 단축',
+      '비개발자도 쉽게 콘텐츠 관리 가능한 관리자 페이지 설계',
+    ],
+    github: 'https://github.com/beak1sin/kua-frontend',
+    demo: 'https://kua.or.kr',
+    figma: 'https://www.figma.com/design/j1mU4aHy4rNvatMUUFRfGz/%EB%8C%80%ED%95%9C%EC%88%98%EC%A4%91%ED%95%80%EC%88%98%EC%98%81%ED%98%91%ED%9A%8C-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80',
+  },
+  {
     id: 'hangbokdog',
     title: '행복하개 (hangbokdog)',
     subtitle: 'SSAFY 자율 프로젝트 우수상(2등)',
@@ -61,6 +90,7 @@ export const projects = [
     ],
     github: 'https://github.com/hangbokdog/hangbokdog',
     demo: '',
+    figma: 'https://www.figma.com/design/vfAo11eCdJ2fe0mBrYrEyI/%ED%96%89%EB%B3%B5%ED%95%98%EA%B0%9C',
   },
   {
     id: 'donghang',
@@ -87,6 +117,7 @@ export const projects = [
     ],
     github: 'https://github.com/donghangbank/donghang',
     demo: '',
+    figma: 'https://www.figma.com/design/PNKXopUHhpBxS6Pl9eYfvh/%EB%8F%99%ED%96%89--%EB%85%B8%EC%9D%B8%EC%9D%84-%EC%9C%84%ED%95%9C-AI-%EA%B8%B0%EB%B0%98-%EC%89%BD%EA%B3%A0-%ED%8E%B8%ED%95%9C-%EB%B1%85%ED%82%B9-%ED%82%A4%EC%98%A4%EC%8A%A4%ED%81%AC',
   },
   {
     id: 'ezip',
@@ -113,6 +144,7 @@ export const projects = [
     ],
     github: 'https://github.com/beak1sin/ezip-frontend',
     demo: '',
+    figma: 'https://www.figma.com/design/YWPftgMxAAOD4iCtMPc36W/SSAFY-1%ED%95%99%EA%B8%B0-%EC%B5%9C%EC%A2%85-%EA%B4%80%ED%86%B5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8--Copy-',
   },
 ];
 
