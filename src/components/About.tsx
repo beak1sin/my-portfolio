@@ -10,10 +10,7 @@ import {
 
 const About = () => {
   return (
-    <section
-      id="about"
-      className="section-padding bg-white dark:bg-black"
-    >
+    <section id="about" className="section-padding bg-white dark:bg-black">
       <div className="container-wide">
         {/* Section Header */}
         <motion.div
@@ -67,11 +64,12 @@ const About = () => {
               <div className="space-y-4">
                 <p className="body-default">
                   2019년 서울대병원 전산실에서 일하던 제가, 26살에 안정적인
-                  직장을 그만두고 개발자의 길을 선택했습니다. 국비교육,
-                  학점은행제, 개인 프로젝트를 거쳐{" "}
-                  <span className="text-accent font-semibold">
-                    SSAFY 12기
-                  </span>
+                  직장을
+                  <br />
+                  그만두고 개발자의 길을 선택했습니다. 국비교육, 학점은행제,
+                  <br />
+                  개인 프로젝트를 거쳐{" "}
+                  <span className="text-accent font-semibold">SSAFY 12기</span>
                   에 합격했고, 1년 동안{" "}
                   <span className="text-accent font-semibold">
                     3개 프로젝트 모두 수상
@@ -92,7 +90,9 @@ const About = () => {
                   시켰으며,
                   <span className="text-accent font-semibold">
                     {" "}
-                    듀얼 모니터를 50ms 이내로 동기화
+                    듀얼 모니터를 50ms
+                    <br />
+                    이내로 동기화
                   </span>
                   시켰습니다.
                 </p>

@@ -68,17 +68,50 @@ const ProjectDetail = () => {
 
               {/* 프로젝트 기본 정보 */}
               <div className="flex-1">
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-3 mb-3 flex-wrap">
                   <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
                     {project.title}
                   </h1>
-                  <span className="px-4 py-1.5 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
-                    {project.subtitle.includes("외주")
-                      ? "🏢 외주"
-                      : project.subtitle.includes("1등")
-                        ? "🥇 1등"
-                        : "🥈 2등"}
-                  </span>
+                  {/* 수상 뱃지 */}
+                  {project.subtitle.includes("1등") && (
+                    <span className="px-4 py-1.5 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
+                      🥇 1등
+                    </span>
+                  )}
+                  {project.subtitle.includes("2등") && (
+                    <span className="px-4 py-1.5 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
+                      🥈 2등
+                    </span>
+                  )}
+                  {project.subtitle.includes("외주") && (
+                    <span className="px-4 py-1.5 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
+                      🏢 외주
+                    </span>
+                  )}
+                  {project.subtitle.includes("서류 합격") && (
+                    <span className="px-4 py-1.5 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
+                      🚀 창업
+                    </span>
+                  )}
+                  {project.subtitle.includes("개인") && (
+                    <span className="px-4 py-1.5 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-semibold">
+                      💡 개인
+                    </span>
+                  )}
+                  {/* 프로젝트 유형 뱃지 */}
+                  {project.subtitle.includes("SSAFY") && (
+                    <span className="px-4 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full text-sm font-medium">
+                      {project.subtitle.includes("자율")
+                        ? "SSAFY 자율 프로젝트"
+                        : project.subtitle.includes("특화")
+                          ? "SSAFY 특화 프로젝트"
+                          : project.subtitle.includes("공통")
+                            ? "SSAFY 공통 프로젝트"
+                            : project.subtitle.includes("관통")
+                              ? "SSAFY 관통 프로젝트"
+                              : ""}
+                    </span>
+                  )}
                 </div>
                 <p className="text-xl text-gray-600 dark:text-gray-300 mb-4">
                   {project.subtitle}

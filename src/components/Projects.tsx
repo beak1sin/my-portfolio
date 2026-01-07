@@ -27,7 +27,9 @@ const Projects = () => {
           <h2 className="heading-section mb-4">
             <span className="text-gradient">Projects</span>
           </h2>
-          <p className="body-large">SSAFY에서 진행한 3개 프로젝트 모두 수상</p>
+          <p className="body-large">
+            외주 프로젝트 + SSAFY 수상작 + 창업 경험 프로젝트
+          </p>
         </motion.div>
 
         {/* Project Tabs */}
@@ -45,7 +47,7 @@ const Projects = () => {
               onClick={() => setSelectedProject(project)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all ${
+              className={`flex items-center cursor-pointer gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all ${
                 selectedProject.id === project.id
                   ? "bg-accent text-white shadow-lg"
                   : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
@@ -97,17 +99,50 @@ const Projects = () => {
                   </motion.div>
                 )}
                 <div>
-                  <div className="flex items-center gap-3 mb-1">
+                  <div className="flex items-center gap-3 mb-1 flex-wrap">
                     <h3 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-neutral-100">
                       {selectedProject.title}
                     </h3>
-                    <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold">
-                      {selectedProject.subtitle.includes("외주")
-                        ? "🏢 외주"
-                        : selectedProject.subtitle.includes("1등")
-                          ? "🥇 1등"
-                          : "🥈 2등"}
-                    </span>
+                    {/* 수상 뱃지 */}
+                    {selectedProject.subtitle.includes("1등") && (
+                      <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold">
+                        🥇 1등
+                      </span>
+                    )}
+                    {selectedProject.subtitle.includes("2등") && (
+                      <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold">
+                        🥈 2등
+                      </span>
+                    )}
+                    {selectedProject.subtitle.includes("외주") && (
+                      <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold">
+                        🏢 외주
+                      </span>
+                    )}
+                    {selectedProject.subtitle.includes("서류 합격") && (
+                      <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold">
+                        🚀 창업
+                      </span>
+                    )}
+                    {selectedProject.subtitle.includes("개인") && (
+                      <span className="px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold">
+                        💡 개인
+                      </span>
+                    )}
+                    {/* 프로젝트 유형 뱃지 */}
+                    {selectedProject.subtitle.includes("SSAFY") && (
+                      <span className="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-full text-xs font-medium">
+                        {selectedProject.subtitle.includes("자율")
+                          ? "SSAFY 자율 프로젝트"
+                          : selectedProject.subtitle.includes("특화")
+                            ? "SSAFY 특화 프로젝트"
+                            : selectedProject.subtitle.includes("공통")
+                              ? "SSAFY 공통 프로젝트"
+                              : selectedProject.subtitle.includes("관통")
+                                ? "SSAFY 관통 프로젝트"
+                                : ""}
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

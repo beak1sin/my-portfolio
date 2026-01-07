@@ -18,6 +18,16 @@ import nodejsIcon from "../assets/icons/nodejs/nodejs-original.svg";
 import gitIcon from "../assets/icons/git/git-original.svg";
 import jiraIcon from "../assets/icons/jira/jira-original.svg";
 import figmaIcon from "../assets/icons/figma/figma-original.svg";
+import djangoIcon from "../assets/icons/django/django-plain.svg";
+import pythonIcon from "../assets/icons/python/python-original.svg";
+import mysqlIcon from "../assets/icons/mysql/mysql-original.svg";
+import dockerIcon from "../assets/icons/docker/docker-original.svg";
+import nginxIcon from "../assets/icons/nginx/nginx-original.svg";
+import tensorflowIcon from "../assets/icons/tensorflow/tensorflow-original.svg";
+import seleniumIcon from "../assets/icons/selenium/selenium-original.svg";
+import oracleIcon from "../assets/icons/oracle/oracle-original.svg";
+import cloudflareIcon from "../assets/icons/cloudflare/cloudflare-original.svg";
+import jenkinsIcon from "../assets/icons/jenkins/jenkins-original.svg";
 
 export const techConfig: Record<
   string,
@@ -126,6 +136,56 @@ export const techConfig: Record<
   Figma: {
     icon: figmaIcon,
     bgColor: "#F24E1E",
+    textColor: "#FFFFFF",
+  },
+  Django: {
+    icon: djangoIcon,
+    bgColor: "#092E20",
+    textColor: "#FFFFFF",
+  },
+  Python: {
+    icon: pythonIcon,
+    bgColor: "#3776AB",
+    textColor: "#FFFFFF",
+  },
+  MySQL: {
+    icon: mysqlIcon,
+    bgColor: "#4479A1",
+    textColor: "#FFFFFF",
+  },
+  Docker: {
+    icon: dockerIcon,
+    bgColor: "#2496ED",
+    textColor: "#FFFFFF",
+  },
+  Nginx: {
+    icon: nginxIcon,
+    bgColor: "#009639",
+    textColor: "#FFFFFF",
+  },
+  TensorFlow: {
+    icon: tensorflowIcon,
+    bgColor: "#FF6F00",
+    textColor: "#FFFFFF",
+  },
+  Selenium: {
+    icon: seleniumIcon,
+    bgColor: "#43B02A",
+    textColor: "#FFFFFF",
+  },
+  "Oracle Cloud": {
+    icon: oracleIcon,
+    bgColor: "#F80000",
+    textColor: "#FFFFFF",
+  },
+  Cloudflare: {
+    icon: cloudflareIcon,
+    bgColor: "#F38020",
+    textColor: "#FFFFFF",
+  },
+  Jenkins: {
+    icon: jenkinsIcon,
+    bgColor: "#D24939",
     textColor: "#FFFFFF",
   },
 };

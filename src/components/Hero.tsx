@@ -65,7 +65,12 @@ const Hero = () => {
             variants={staggerItem}
             className="body-large max-w-2xl mx-auto mb-12"
           >
-            {personalInfo.description}
+            {personalInfo.description.map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < personalInfo.description.length - 1 && <br />}
+              </span>
+            ))}
           </motion.p>
 
           {/* CTA Buttons */}

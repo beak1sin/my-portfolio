@@ -1,12 +1,19 @@
 import logoKua from '../assets/logo/logo_kua.svg';
 import logoHangbokdog from '../assets/logo/logo_hangbokdog.svg';
 import logoDonghang from '../assets/logo/logo_donghang.svg';
+import logoAndante from '../assets/logo/logo_andante.svg'
 import logoEzip from '../assets/logo/logo_ezip.svg';
+import logoBillin from '../assets/logo/logo_billin.svg';
+import logoEnergyAI from '../assets/logo/logo_energyAI.svg';
+import logoAlphaRaffle from '../assets/logo/logo_alpharaffle.svg';
 
 export const personalInfo = {
   name: '이재백',
   title: '배움에 두려움이 없는 프론트엔드 개발자',
-  description: 'SSAFY 12기에서 3개 프로젝트 전체 수상 | 성능 최적화와 사용자 경험에 집중하는 개발자',
+  description: [
+    'SSAFY 12기에서 3개 프로젝트 전체 수상',
+    '성능 최적화와 사용자 경험에 집중하는 개발자',
+  ],
   email: 'dbswlrla112@naver.com',
   phone: '010-2395-6787',
   location: '서울특별시 강남구 개포동',
@@ -120,6 +127,33 @@ export const projects = [
     figma: 'https://www.figma.com/design/PNKXopUHhpBxS6Pl9eYfvh/%EB%8F%99%ED%96%89--%EB%85%B8%EC%9D%B8%EC%9D%84-%EC%9C%84%ED%95%9C-AI-%EA%B8%B0%EB%B0%98-%EC%89%BD%EA%B3%A0-%ED%8E%B8%ED%95%9C-%EB%B1%85%ED%82%B9-%ED%82%A4%EC%98%A4%EC%8A%A4%ED%81%AC',
   },
   {
+    id: 'andante',
+    title: 'Andante (안단테)',
+    subtitle: 'SSAFY 공통 프로젝트',
+    period: '2025.01.06 ~ 2025.02.21 (7주)',
+    team: '6명 (FE: 1명, FULL: 2명, BE: 3명)',
+    role: '프론트엔드 개발 리드 - 기획, UI/UX 디자인, 프론트엔드 아키텍처 설계 및 핵심 기능 구현',
+    description: '게이미피케이션과 AI 분석으로 악기 연습을 지속하게 돕는 SNS 플랫폼',
+    logo: logoAndante,
+    techStack: ['TypeScript', 'React', 'Zustand', 'Tanstack Query', 'Axios', 'AWS S3'],
+    features: [
+      'AI 기반 연주 점수 분석 (Librosa 음원 분석)',
+      '원곡과 실시간 비교 유사도 측정',
+      '레벨 & 뱃지, 스트릭 시스템 게이미피케이션',
+      '연주 영상 피드 공유 및 실시간 피드백',
+      'AWS S3 Presigned URL 멀티파트 업로드',
+    ],
+    achievements: [
+      'Zustand Selector & Shallow 비교로 렌더링 최적화 60% 개선',
+      'AWS S3 Presigned URL로 영상 업로드 속도 40% 향상',
+      'Tanstack Query 캐싱 전략으로 API 호출 50% 감소',
+      '프론트엔드 리더로서 성공적인 프로젝트 완수',
+    ],
+    github: 'https://github.com/beak1sin/andante',
+    demo: 'https://www.adte.site/',
+    figma: '',
+  },
+  {
     id: 'ezip',
     title: '이집어때 (ezip)',
     subtitle: 'SSAFY 관통 프로젝트 최우수상(1등)',
@@ -145,6 +179,88 @@ export const projects = [
     github: 'https://github.com/beak1sin/ezip-frontend',
     demo: '',
     figma: 'https://www.figma.com/design/YWPftgMxAAOD4iCtMPc36W/SSAFY-1%ED%95%99%EA%B8%B0-%EC%B5%9C%EC%A2%85-%EA%B4%80%ED%86%B5%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8--Copy-',
+  },
+  {
+    id: 'billin`',
+    title: 'Billin` (빌린)',
+    subtitle: '창업중심대학 예비창업자 사업 (서류 합격)',
+    period: '2024.01 ~ 2024.04',
+    team: '3명 (대표: 1명, 개발: 1명, 데이터분석: 1명)',
+    role: 'S/W 개발 총괄 - 서버 구축, 백엔드/프론트엔드 개발, UI/UX 디자인',
+    description: '개인의 물건을 빌리고 빌려주는 C2C 물품 대여 중개 플랫폼',
+    logo: logoBillin,
+    techStack: ['Django', 'React', 'Python', 'MySQL', 'Oracle Cloud', 'Docker', 'Nginx', 'Figma'],
+    features: [
+      '15개 카테고리 물품 대여 등록/검색',
+      'PASS 본인인증 및 계좌 인증 시스템',
+      '1:1 채팅 및 분쟁 해결 상담 센터',
+      '빌린 코인(가상화폐) 결제 시스템',
+      '페널티 제도 (보증금, 연체료, 훼손 배상)',
+    ],
+    achievements: [
+      'Oracle Cloud 서버 구축 및 Docker 배포 환경 설계',
+      'Django MVT 패턴 기반 백엔드 아키텍처',
+      'Figma로 앱/웹 목업 및 프로토타입 디자인',
+      'CI/CD 파이프라인 구축 (Github + Jenkins)',
+    ],
+    github: '',
+    demo: '',
+    figma: 'https://www.figma.com/design/UUOtV8RCGdJT8T9nd98LRP/Billin-',
+  },
+  {
+    id: 'energyAI',
+    title: 'EnergyAI',
+    subtitle: '예비창업패키지 사업 (서류 합격)',
+    period: '2023.01 ~ 2023.04',
+    team: '3명 (대표: 1명, 개발: 1명, 데이터분석: 1명)',
+    role: 'S/W 개발 총괄 - AI 모델 웹 서비스화, 서버 배포, 프론트엔드 개발',
+    description: 'AI 예측기술이 적용된 재생에너지 발전량 예측 및 투자 경제성 분석 웹서비스',
+    logo: logoEnergyAI,
+    techStack: ['Django', 'Python', 'TensorFlow', 'LSTM', 'MySQL', 'Oracle Cloud', 'Nginx', 'uWSGI'],
+    features: [
+      '시간별/지역별/전압별 재생에너지 출력 예측',
+      '투자 경제성 분석 (IRR 계산, 투자금 회수 연차)',
+      '실시간 전력 시장 동향 시각화',
+      '예측 데이터 엑셀(CSV) 다운로드',
+      '지도 기반 발전소 위치별 예측값 표시',
+    ],
+    achievements: [
+      'RNN, LSTM, LGBM 등 AI 예측 모델 웹 서비스 연동',
+      'Oracle Cloud + Nginx + uWSGI 배포 파이프라인',
+      'Django MVT 패턴 기반 웹 서비스 개발',
+      '전력거래소/기상청 데이터 크롤링 자동화',
+    ],
+    github: '',
+    demo: '',
+    figma: '',
+  },
+  {
+    id: 'alpharaffle',
+    title: 'AlphaRaffle',
+    subtitle: '개인 프로젝트 (운영 종료)',
+    period: '2022.06 ~ 2023.12',
+    team: '1명 (개인)',
+    role: '풀스택 개발 - 기획, 디자인, 개발, 배포, 운영 전체 담당',
+    description: '한정판 신발 래플/응모 정보를 모아서 보여주는 스니커즈 플랫폼',
+    logo: logoAlphaRaffle,
+    techStack: ['Django', 'Python', 'MySQL', 'Selenium', 'BeautifulSoup', 'Oracle Cloud', 'Cloudflare', 'PWA'],
+    features: [
+      '신발 발매 정보 자동 크롤링 (luck-d.com)',
+      '래플 사이트 링크 및 구글폼 자동입력 파싱',
+      '회원 시스템 (이메일 인증, 프로필 관리)',
+      '좋아요/북마크, 댓글, 평점 기능',
+      'PWA 지원 (모바일 앱처럼 사용)',
+    ],
+    achievements: [
+      '1년 6개월 실서비스 운영 경험',
+      'Selenium/BeautifulSoup 기반 크롤링 시스템',
+      'Pillow + AVIF 이미지 최적화',
+      'Telegram 봇 연동 크롤링 상태 알림',
+      'Cloudflare CDN + 캐시 관리',
+    ],
+    github: 'https://github.com/beak1sin/AlphaRaffle.git',
+    demo: '',
+    figma: 'https://www.figma.com/design/DTH7CO0gQS2gFtnDSr1vHG/Alpha-Raffle',
   },
 ];
 
